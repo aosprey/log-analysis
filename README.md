@@ -19,5 +19,5 @@ This repository contains the scripts for processing UM suite log files and extra
 * `N1280/files/suite_info_N1280.csv`   
   Summary information about the suites analysed. This is an input to the analysis. 
   
-* `N1280/files/suite_perf_N1280.csv` 
+* `N1280/files/suite_perf_N1280.csv`  
   Performance summary for the suites analysed. This is produced by the analysis. 
