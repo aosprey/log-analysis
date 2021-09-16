@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Extract all tarred log files in current cylc-run directory. 
+
+for f in log*.tar.gz; do 
+
+  if [ -f $f ]; then 
+     tar -xzf $f
+     if [ $? == 0 ]; then rm $f; fi
+  fi
+
+done
