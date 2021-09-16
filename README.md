@@ -2,6 +2,8 @@
 
 This repository contains the scripts for processing UM suite log files and extracting performance data. It also contains the results of analysis of recent N1280 runs on the XCS, Archer and Archer2, plus some N512 coupled runs. 
 
+See the wiki for instructions on how to run. 
+
 ## Structure 
 
 * `scripts/log-files/`
