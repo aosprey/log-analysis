@@ -6,7 +6,7 @@ See the wiki for instructions on how to run.
 
 ## Structure 
 
-* `scripts/log-files/`
+* `scripts/log-files/`  
   This contains a mix of bash and python code for processing cylc log files, PBS output and SAFE data.  
 
 * `scripts/analysis/`   
