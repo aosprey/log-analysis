@@ -1,9 +1,9 @@
 #!/bin/bash
 #set -e
 
-SCRIPTDIR=/home/annette/Work/HRCM/run_analysis/scripts
+SCRIPTDIR=${PWD}/../../scripts/log-files
 DATA1=/home/annette/Data/HRCM
-DATA2=/home/annette/Work/HRCM/run_analysis/N1280/files
+DATA2=${PWD}/../files
 SUITEID=u-cd936
 
 logdir=${DATA1}/${SUITEID}

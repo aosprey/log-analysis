@@ -1,13 +1,13 @@
 #!/bin/bash
 #set -e
 
-SCRIPTDIR=/home/annette/Work/HRCM/run_analysis/scripts
+SCRIPTDIR=${PWD}/../../scripts/log-files
 DATA1=/home/annette/Data/HRCM
-DATA2=/home/annette/Work/HRCM/run_analysis/N1280/files
+DATA2=${PWD}/../files
 SUITEID=u-cf432
+task_name=atmos_main
 
 logdir=${DATA1}/${SUITEID}/archer2
-task_name=atmos_main
 
 #cylc_data_raw=${DATA2}/raw/${SUITEID}_cylc.csv
 #${SCRIPTDIR}/parse_job_status.sh $logdir $task_name ${cylc_data_raw}
