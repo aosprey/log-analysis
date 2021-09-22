@@ -23,17 +23,13 @@ suite_colours = {suites[i]: colours[i] for i in range(len(suites))}
 suite_labels = ['Ens6 ARCHER', 'Ens7 ARCHER',
                 'Test1 ARCHER2', 'Test2 ARCHER2 pt i', 'Test2 ARCHER2 pt ii']
 
-# Read suite info file
-suite_info = pd.read_csv(suite_info_file, index_col='Suite id')
-
 # 2. Read logs
 
 log_files = {}
 for suite in archer_suites + archer2_suites: 
     log_files[suite] = '{}/{}_cylc_all.csv'.format(log_dir, suite)
 dt_cols = ['CYLC_JOB_INIT_TIME']
-num_cycles = suite_info.loc[suites,'Run length (cycles)']
-suite_logs = perf.read_logs(suites, log_files, dt_cols, num_cycles)
+suite_logs = perf.read_logs_all(suites, log_files, dt_cols)
 
 # 3. Set up data ready for plotting
 
