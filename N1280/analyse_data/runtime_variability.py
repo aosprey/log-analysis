@@ -61,34 +61,34 @@ leg_loc = 'lower right'
 figsize = (12,6)
 title = 'SYPD per cycle for XCS runs'
 ylim = (0.04,0.14)
+plot_file = '../plots/xcs_sypd_variability.png'
+
 perf.plot_runtime_variability(
     suite_logs, suite_colours, xcs_suites, y_col, 
-    xcs_suites, leg_loc, figsize, xlabel, y_col, title, ylim)
-
-plot_file = '../plots/xcs_sypd_variability.png'
-plt.savefig(plot_file)
+    xcs_suites, leg_loc, figsize, xlabel, y_col, title, ylim,
+    plot_file)
 
 # Archer suites
 figsize = (12,6)
 title = 'SYPD per cycle for ARCHER runs'
 ylim = (0.08,0.3)
+plot_file = '../plots/archer_sypd_variability.png'
+
 perf.plot_runtime_variability(
     suite_logs, suite_colours, archer_suites, y_col,
-    archer_suites, leg_loc, figsize, xlabel, y_col, title, ylim) 
-
-plot_file = '../plots/archer_sypd_variability.png'
-plt.savefig(plot_file)
+    archer_suites, leg_loc, figsize, xlabel, y_col, title, ylim,
+    plot_file) 
 
 # Archer2 suites
 figsize = (6,6)
 title = 'SYPD per cycle for ARCHER2 runs'
 ylim = (0.08,0.4)
+plot_file = '../plots/archer2_sypd_variability.png'
+
 perf.plot_runtime_variability(
     suite_logs, suite_colours, archer2_suites, y_col, 
-    archer2_suites, leg_loc, figsize, xlabel, y_col, title, ylim) 
-
-plot_file = '../plots/archer2_sypd_variability.png'
-plt.savefig(plot_file)
+    archer2_suites, leg_loc, figsize, xlabel, y_col, title, ylim,
+    plot_file) 
 
 # 5. Plot SYPD / cycle for Archer and Archer2 suites together
 
@@ -116,12 +116,12 @@ leg_loc = 'upper right'
 figsize = (12,6)
 title = 'SYPD per model month'
 ylim = (0.08,0.4)
+plot_file = '../plots/archer_archer2_sypd_variability.png'
+
 perf.plot_runtime_variability(
     suite_logs, suite_colours, plot_suites, y_col, 
-    suite_labels, leg_loc, figsize, xlabel, y_col, title, ylim)
-
-plot_file = '../plots/archer_archer2_sypd_variability.png'
-plt.savefig(plot_file)
+    suite_labels, leg_loc, figsize, xlabel, y_col, title, ylim,
+    plot_file)
 
 # 6. Plot runtime / cycle 
 
@@ -134,22 +134,22 @@ leg_loc = 'upper right'
 figsize = (12,6)
 title = 'Run time per cycle for ARCHER runs'
 ylim = (6,22)
+plot_file = '../plots/archer_runtime_variability.png'
+
 perf.plot_runtime_variability(
     suite_logs, suite_colours, archer_suites, y_col,
-    archer_suites, leg_loc, figsize, xlabel, ylabel, title, ylim) 
-
-plot_file = '../plots/archer_runtime_variability.png'
-plt.savefig(plot_file)
+    archer_suites, leg_loc, figsize, xlabel, ylabel, title, ylim,
+    plot_file) 
 
 # Archer2 suites
 figsize = (6,6)
 title = 'Run time per cycle for ARCHER2 runs'
 ylim = (4,10)
+plot_file = '../plots/archer2_runtime_variability.png'
+
 perf.plot_runtime_variability(
     suite_logs, suite_colours, archer2_suites, y_col,
-    archer2_suites, leg_loc, figsize, xlabel, ylabel, title, ylim) 
-
-plot_file = '../plots/archer2_runtime_variability.png'
-plt.savefig(plot_file)
+    archer2_suites, leg_loc, figsize, xlabel, ylabel, title, ylim,
+    plot_file) 
 
 

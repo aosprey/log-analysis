@@ -48,22 +48,20 @@ leg_loc = 'upper left'
 figsize = (12,6)
 xlabel = 'Submission date'
 title = 'Queue time per model month'
+plot_file = '../plots/archer_archer2_queue_variability.png'
 
 perf.plot_queue_variability(
     suite_logs, suite_colours, suites, y_col,
-    suite_labels, leg_loc, figsize, xlabel, y_col, title) 
-
-plot_file = '../plots/archer_archer2_queue_variability.png'
-plt.savefig(plot_file)
+    suite_labels, leg_loc, figsize, xlabel, y_col, title, plot_file) 
 
 # Plot a smaller version
 figsize = (6,6)
 mean = False
 legend = False
+plot_file = '../plots/archer_archer2_queue_variability_small.png'
 
 perf.plot_queue_variability(
     suite_logs, suite_colours, suites, y_col,
-    suite_labels, leg_loc, figsize, xlabel, y_col, title, mean, legend) 
+    suite_labels, leg_loc, figsize, xlabel, y_col, title, plot_file,
+    mean, legend) 
 
-plot_file = '../plots/archer_archer2_queue_variability_small.png'
-plt.savefig(plot_file)

@@ -56,7 +56,8 @@ def read_logs(suites, files, dt_cols, cycles):
 #   labels, figsize, xlabel, title: values for plot
 #   ylim: optional 
 def plot_runtime_variability(suite_logs, suite_colours, suites, y_col,
-                             labels, leg_loc, figsize, xlabel, ylabel, title, ylim):
+                             labels, leg_loc, figsize, xlabel, ylabel, title, ylim,
+                             plot_file):
            
     plt.rcParams['font.size'] = '14'
     fig, ax = plt.subplots(facecolor='white',figsize=figsize)
@@ -74,12 +75,14 @@ def plot_runtime_variability(suite_logs, suite_colours, suites, y_col,
     ax.legend(labels, loc=leg_loc)
     ax.set_title(title)
 
+    plt.savefig(plot_file)
+
 
 # Plot queue time per cycle for multiple runs.
 # Data is in a dictionary of dataframes, plot given column against index.
 # All jobs plotted.
 def plot_queue_variability(suite_logs, suite_colours, suites, y_col,
-                           labels, leg_loc, figsize, xlabel, ylabel, title,
+                           labels, leg_loc, figsize, xlabel, ylabel, title, plot_file,
                            mean=True, legend=True):
     
     plt.rcParams['font.size'] = '14'
@@ -99,4 +102,4 @@ def plot_queue_variability(suite_logs, suite_colours, suites, y_col,
         ax.legend(labels, loc=leg_loc)
     ax.set_title(title)
 
-
+    plt.savefig(plot_file)
