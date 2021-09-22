@@ -19,5 +19,5 @@ ${SCRIPTDIR}/parse_archer_job.sh $logdir $task_name $cylc_data_raw
 
 python ${SCRIPTDIR}/process_cylc_times.py --keep_repeats $cylc_data_raw $cylc_data_processed
 
-#python ${SCRIPTDIR}/process_safe_logs.py $safe_data_raw $cylc_data_processed $safe_data_processed
+python ${SCRIPTDIR}/process_safe_logs.py $safe_data_raw $cylc_data_processed $safe_data_processed
 
