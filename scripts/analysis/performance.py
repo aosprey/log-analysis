@@ -44,6 +44,32 @@ def read_logs(suites, files, dt_cols, cycles):
     return suite_logs
 
 
+# Read in multiple suite log files.
+# Don't worry about whether jobs succeeded or failed.
+# 
+# Inputs:
+#   list of suite names
+#   list of log summary files to read
+#   list of columns to convert to datetime
+# 
+# Return:
+#   dictionary of log data as a dataframe indexed by suite name
+
+def read_logs_all(suites, files, dt_cols):
+
+    suite_logs = {}
+    
+    for suite in suites:
+        logs = pd.read_csv(files[suite])
+
+        # Convert cols to dt
+        logs[dt_cols] = logs[dt_cols].apply(pd.to_datetime, errors='coerce')
+
+        suite_logs[suite] = logs
+
+    return suite_logs 
+
+
 # Plot runtime/SYPD per cycle for multiple runs.
 # Data is in a dictionary of dataframes, plot given column against index.
 # We only consider jobs marked as succeeded. 
@@ -103,3 +129,27 @@ def plot_queue_variability(suite_logs, suite_colours, suites, y_col,
     ax.set_title(title)
 
     plt.savefig(plot_file)
+
+
+# Plot transfer rate per cycle for one run.
+# Assuming data in a dataframe with columns 'Data size GB' and 'Transfer rate MB/s'
+# Annotate with mean data volume 
+def plot_transfer_rate(logs, colour, suite, machine, title, ylim, xlabel, plot_file):
+
+    plt.rcParams['font.size'] = '14'
+    fig, ax = plt.subplots(facecolor='white',figsize=(10,6))
+
+    mean_size = round(logs['Data size GB'].mean())
+    
+    logs.plot(ax=ax, y='Transfer rate MB/s', 
+              xlabel=xlabel, ylabel='Transfer rate MB/s',
+              ylim=ylim, title=title, style='o', mec=colour, mfc=colour, legend=False)
+
+    text = 'Mean data volume / transfer: {} GB'.format(mean_size)
+    xpos = logs.index[-1]
+    ypos = ylim[1]-10 
+
+    plt.text(xpos, ypos, text, horizontalalignment='right')
+                  
+    plt.savefig(plot_file)
+
