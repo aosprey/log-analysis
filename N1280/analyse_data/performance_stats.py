@@ -27,9 +27,7 @@ suite_logs = {}
 
 # Set up a df to store performance data for each suite
 copy_cols = ['Description', 'Total nodes', 'Cycle length (days)','Run length (cycles)']
-new_cols = ['Time logs', 'Extended logs']
-perf = pd.DataFrame(index=avail_suites, columns=copy_cols+new_cols)
-perf[copy_cols] = suites.loc[avail_suites,copy_cols]
+perf = suites.loc[avail_suites,copy_cols]
 perf.rename(columns={'Run length (cycles)':'Cycles'}, inplace=True)
 
 # 2. Read logs
@@ -51,9 +49,6 @@ for suite in archer2_suites:
         inds = cylc_logs['Cycle'].unique()[:-extra]
         cylc_logs['Succeeded'] = cylc_logs['Succeeded'] & cylc_logs['Cycle'].isin(inds)
     
-    # Count entries
-    perf.loc[suite,'Time logs'] = cylc_logs['Succeeded'].sum()
-    perf.loc[suite,'Extended logs'] = 0
     suite_logs[suite] = cylc_logs
   
 # ARCHER suites
@@ -62,17 +57,8 @@ for suite in archer_suites:
     # Read cylc logs & count entries
     cylc_file = log_dir + '/' + suite + '_cylc_all.csv'
     cylc_logs = pd.read_csv(cylc_file, index_col='PBS ID')
-    cylc_logs['Succeeded'] = (~cylc_logs.duplicated(subset=['Cycle'],keep='last'))
-    #cylc_logs.drop_duplicates(subset='Cycle', keep='last', inplace=True)
-    perf.loc[suite,'Time logs'] = cylc_logs['Succeeded'].sum()
-    
-    # Read SAFE logs & count entries
-    safe_file = log_dir + '/' + suite + '_safe.csv'
-    safe_logs = pd.read_csv(safe_file, index_col='PBS ID')
-    perf.loc[suite,'Extended logs'] = safe_logs.shape[0]
-  
-    # Concantenate Cylc and SAFE data 
-    suite_logs[suite] = pd.concat([cylc_logs, safe_logs], axis=1, sort=False)
+    cylc_logs['Succeeded'] = (~cylc_logs.duplicated(subset=['Cycle'],keep='last'))    
+    suite_logs[suite] = cylc_logs
 
 # XCS suites 
 for suite in xcs_suites: 
@@ -83,10 +69,6 @@ for suite in xcs_suites:
     logs['Succeeded'] = True
     suite_logs[suite] = logs
     
-    # Count entries we have times for and extended epilogues 
-    perf.loc[suite,'Time logs'] = suite_logs[suite].shape[0]
-    perf.loc[suite,'Extended logs'] = suite_logs[suite]['Executable'].count()
-
 # 3. Queue time and run time
 # For queue time we look at all job. For run times just the successful jobs.
 
