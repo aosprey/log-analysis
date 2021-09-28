@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Parse UM pe_output file to get times for each timestep
+# Run as: timesteps.bash infile
+
+infile=$1
+tsfile=timestep_times.txt
+
+echo "Timestep, Time taken" > $tsfile
+sed -n 's/Atm_Step: Info: timestep .* \([0-9]\+\) took .* \([0-9]\+\.[0-9]\+\) seconds/\1, \2/p' < $infile >> $tsfile
+
