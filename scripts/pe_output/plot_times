@@ -1,0 +1,7 @@
+# gnuplot script
+set key autotitle columnhead
+set logscale y
+set key off
+set xlabel "Time (s)"
+set ylabel "Timestep"
+plot 'timestep_times.txt'
