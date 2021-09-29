@@ -26,6 +26,9 @@ See the wiki for instructions on how to run: https://github.com/aosprey/log-anal
 
   * `process_logs/`    
      Scripts to process the log files. 
+     
+* `N512_coupled/`  
+  Code and results for analysis of N512 coupled runs. Follows similar structure to N1280. 
    
 * `scripts/`
 
